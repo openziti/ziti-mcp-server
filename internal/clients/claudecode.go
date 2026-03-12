@@ -51,7 +51,7 @@ func (m *ClaudeCodeManager) Configure(opts ClientOptions, binaryPath string) err
 
 	scData, _ := json.Marshal(serverConfig)
 	var scMap map[string]any
-	json.Unmarshal(scData, &scMap)
+	_ = json.Unmarshal(scData, &scMap)
 
 	mcpServers[MCPServerName] = scMap
 	config["mcpServers"] = mcpServers

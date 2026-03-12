@@ -23,31 +23,31 @@ func Output(format string, a ...any) {
 
 // Success prints a green checkmark message to stderr.
 func Success(format string, a ...any) {
-	green.Fprint(os.Stderr, "✓ ")
+	_, _ = green.Fprint(os.Stderr, "✓ ")
 	fmt.Fprintf(os.Stderr, format+"\n", a...)
 }
 
 // Error prints a red X message to stderr.
 func Error(format string, a ...any) {
-	red.Fprint(os.Stderr, "✗ ")
+	_, _ = red.Fprint(os.Stderr, "✗ ")
 	fmt.Fprintf(os.Stderr, format+"\n", a...)
 }
 
 // Warn prints a yellow warning to stderr.
 func Warn(format string, a ...any) {
-	yellow.Fprint(os.Stderr, "! ")
+	_, _ = yellow.Fprint(os.Stderr, "! ")
 	fmt.Fprintf(os.Stderr, format+"\n", a...)
 }
 
 // Info prints a blue info message to stderr.
 func Info(format string, a ...any) {
-	blue.Fprint(os.Stderr, "i ")
+	_, _ = blue.Fprint(os.Stderr, "i ")
 	fmt.Fprintf(os.Stderr, format+"\n", a...)
 }
 
 // Bold prints bold text to stderr.
 func Bold(format string, a ...any) {
-	bold.Fprintf(os.Stderr, format+"\n", a...)
+	_, _ = bold.Fprintf(os.Stderr, format+"\n", a...)
 }
 
 // Cyan returns a cyan-colored string.

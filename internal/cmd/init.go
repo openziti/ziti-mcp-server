@@ -177,7 +177,7 @@ func newInitCmd() *cobra.Command {
 	cmd.Flags().BoolVar(&readOnly, "read-only", false, "Only expose read-only tools")
 	cmd.Flags().StringVar(&profile, "profile", "default", "Profile name for credentials")
 
-	cmd.MarkFlagRequired("auth-mode")
+	_ = cmd.MarkFlagRequired("auth-mode")
 
 	return cmd
 }

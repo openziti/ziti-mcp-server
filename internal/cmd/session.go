@@ -97,7 +97,7 @@ func newSessionCmd() *cobra.Command {
 
 			if expiresAtStr := data["token_expires_at"]; expiresAtStr != "" {
 				var expiresAt int64
-				fmt.Sscanf(expiresAtStr, "%d", &expiresAt)
+				_, _ = fmt.Sscanf(expiresAtStr, "%d", &expiresAt)
 				if expiresAt > 0 {
 					now := time.Now().UnixMilli()
 					expiresIn := expiresAt - now

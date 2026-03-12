@@ -1,7 +1,6 @@
 package client
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -50,7 +49,7 @@ func authenticateToken(cfg tools.HandlerConfig, token string, s *store.Store) (*
 	if err != nil {
 		return nil, "", fmt.Errorf("authenticating: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	body, _ := io.ReadAll(resp.Body)
 	slog.Debug("auth response", "status", resp.StatusCode, "body", string(body))
@@ -121,44 +120,3 @@ func lastN(s string, n int) string {
 	return s[len(s)-n:]
 }
 
-// doAPICall performs the actual API call with the authenticated client.
-func doAPICall(httpClient *http.Client, method, url string, requestBody any) ([]byte, error) {
-	var bodyReader io.Reader
-	if requestBody != nil {
-		data, err := json.Marshal(requestBody)
-		if err != nil {
-			return nil, fmt.Errorf("encoding request body: %w", err)
-		}
-		bodyReader = bytes.NewReader(data)
-	}
-
-	req, err := http.NewRequest(method, url, bodyReader)
-	if err != nil {
-		return nil, err
-	}
-	if requestBody != nil {
-		req.Header.Set("Content-Type", "application/json")
-	}
-
-	resp, err := httpClient.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	if resp.StatusCode == http.StatusUnauthorized {
-		InvalidateAllSessions()
-		return nil, fmt.Errorf("unauthorized (401): session expired or invalid")
-	}
-
-	if resp.StatusCode >= 400 {
-		return nil, fmt.Errorf("HTTP %d: %s", resp.StatusCode, string(body))
-	}
-
-	return body, nil
-}

@@ -138,7 +138,7 @@ func IsTokenExpiredValue(expiresAtStr string, bufferSecs int64) bool {
 		return true
 	}
 	var expiresAt int64
-	fmt.Sscanf(expiresAtStr, "%d", &expiresAt)
+	_, _ = fmt.Sscanf(expiresAtStr, "%d", &expiresAt)
 	if expiresAt == 0 {
 		return true
 	}

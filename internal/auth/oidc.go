@@ -58,7 +58,7 @@ func FetchOIDCDiscoveryDocument(idpDomain string) (*OIDCDiscoveryDocument, error
 	if err != nil {
 		return nil, fmt.Errorf("fetching OIDC discovery from %s: %w", url, err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("OIDC discovery returned %d %s", resp.StatusCode, resp.Status)

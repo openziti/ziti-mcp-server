@@ -47,7 +47,7 @@ func authenticateIdentity(cfg tools.HandlerConfig, s *store.Store) (*http.Client
 	if err != nil {
 		return nil, "", fmt.Errorf("certificate authentication: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	body, _ := io.ReadAll(resp.Body)
 	slog.Debug("cert auth response", "status", resp.StatusCode, "body", string(body))

@@ -45,7 +45,7 @@ func (m *VSCodeManager) Configure(opts ClientOptions, binaryPath string) error {
 	serverConfig := m.CreateServerConfig(opts, binaryPath)
 	scData, _ := json.Marshal(serverConfig)
 	var scMap map[string]any
-	json.Unmarshal(scData, &scMap)
+	_ = json.Unmarshal(scData, &scMap)
 
 	servers[MCPServerName] = scMap
 	config["servers"] = servers

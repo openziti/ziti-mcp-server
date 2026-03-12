@@ -56,7 +56,7 @@ func authenticateUPDB(cfg tools.HandlerConfig, s *store.Store) (*http.Client, st
 	if err != nil {
 		return nil, "", fmt.Errorf("UPDB authentication: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	respBody, _ := io.ReadAll(resp.Body)
 	slog.Debug("UPDB auth response", "status", resp.StatusCode, "body", string(respBody))

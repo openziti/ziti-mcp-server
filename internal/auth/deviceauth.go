@@ -6,7 +6,6 @@ import (
 	"log/slog"
 	"net/http"
 	"net/url"
-	"strings"
 	"time"
 
 	"github.com/pkg/browser"
@@ -62,7 +61,7 @@ func RequestDeviceAuthorization(s *store.Store, cfg DeviceAuthConfig) error {
 	if err != nil {
 		return fmt.Errorf("device code request failed: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var deviceResp struct {
 		DeviceCode              string `json:"device_code"`
@@ -167,7 +166,7 @@ func RequestDeviceCode(cfg DeviceAuthConfig) (*DeviceCodeResult, error) {
 	if err != nil {
 		return nil, fmt.Errorf("device code request failed: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var deviceResp struct {
 		DeviceCode              string `json:"device_code"`
@@ -244,7 +243,7 @@ func pollForToken(tokenEndpoint, deviceCode, clientID string) (*tokenResponse, e
 	if err != nil {
 		return nil, fmt.Errorf("polling token endpoint: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var tr tokenResponse
 	if err := json.NewDecoder(resp.Body).Decode(&tr); err != nil {
@@ -325,7 +324,7 @@ func RevokeRefreshToken(s *store.Store, idpClientID string) error {
 	if err != nil {
 		return fmt.Errorf("revoking refresh token: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode == http.StatusOK {
 		slog.Debug("refresh token revoked")
@@ -367,7 +366,7 @@ func RefreshAccessToken(s *store.Store, idpClientID string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("refreshing token: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	var tr tokenResponse
 	if err := json.NewDecoder(resp.Body).Decode(&tr); err != nil {
@@ -385,16 +384,3 @@ func RefreshAccessToken(s *store.Store, idpClientID string) (string, error) {
 	return tr.AccessToken, nil
 }
 
-// formatDomain normalizes a domain string.
-func formatDomain(domain string) string {
-	if domain == "" {
-		return ""
-	}
-	domain = strings.TrimPrefix(domain, "https://")
-	domain = strings.TrimPrefix(domain, "http://")
-	domain = strings.TrimSuffix(domain, "/")
-	if !strings.Contains(domain, ".") {
-		return domain + ".your-tenant.auth0.com"
-	}
-	return domain
-}

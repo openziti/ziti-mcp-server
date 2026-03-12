@@ -31,7 +31,7 @@ func FetchControllerCA(host string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("fetching CA (controller may use publicly trusted cert): %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("CA endpoint returned %d %s", resp.StatusCode, resp.Status)

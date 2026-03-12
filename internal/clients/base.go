@@ -90,7 +90,7 @@ func ConfigureBase(mgr *BaseManager, configPath string, opts ClientOptions, bina
 	// Convert to map for JSON serialization
 	scData, _ := json.Marshal(serverConfig)
 	var scMap map[string]any
-	json.Unmarshal(scData, &scMap)
+	_ = json.Unmarshal(scData, &scMap)
 
 	mcpServers[MCPServerName] = scMap
 	config["mcpServers"] = mcpServers
