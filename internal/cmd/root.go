@@ -34,6 +34,7 @@ controlled access to the OpenZiti Controller Management API.`,
 	}
 
 	root.AddCommand(
+		newInstallCmd(),
 		newInitCmd(),
 		newRunCmd(),
 		newLogoutCmd(),
