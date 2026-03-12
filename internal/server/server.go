@@ -143,7 +143,7 @@ func createToolHandler(
 		}
 
 		handlerCfg := tools.HandlerConfig{
-			ZitiControllerHost: client.FormatDomain(currentCfg.ZitiControllerHost),
+			ZitiControllerHost: currentCfg.ZitiControllerHost,
 			AuthMode:           currentCfg.AuthMode,
 			Profile:            s.ActiveProfile(),
 		}

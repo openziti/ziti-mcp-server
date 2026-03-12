@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/openziti/ziti-mcp-server-go/internal/cmd"
@@ -8,6 +9,7 @@ import (
 
 func main() {
 	if err := cmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 }
