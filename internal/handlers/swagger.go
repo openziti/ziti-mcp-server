@@ -32,6 +32,26 @@ var noAuth = runtime.ClientAuthInfoWriterFunc(func(_ runtime.ClientRequest, _ st
 	return nil
 })
 
+// stripFieldFromDataItems removes the named field from each item in the
+// top-level "data" array of a standard Ziti list response. This is useful for
+// dropping expensive fields (like JSON schemas) from list endpoints while
+// keeping them available on detail endpoints.
+func stripFieldFromDataItems(response any, field string) {
+	root, ok := response.(map[string]any)
+	if !ok {
+		return
+	}
+	data, ok := root["data"].([]any)
+	if !ok {
+		return
+	}
+	for _, item := range data {
+		if m, ok := item.(map[string]any); ok {
+			delete(m, field)
+		}
+	}
+}
+
 // ToMap converts a go-swagger model struct to map[string]any via JSON round-trip
 // so that StripNoise and CreateSuccessResponse work correctly.
 func ToMap(v any) (any, error) {

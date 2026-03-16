@@ -125,8 +125,8 @@ func registerCurrentIdentity(r *tools.Registry, s *store.Store) {
 			"type": "object",
 			"properties": map[string]any{
 				"id":              map[string]any{"type": "string", "description": "Authenticator ID"},
-				"currentPassword": map[string]any{"type": "string", "description": "Current password for verification"},
-				"password":        map[string]any{"type": "string", "description": "New password"},
+				"currentPassword": map[string]any{"type": "string", "description": "Current password for verification", "writeOnly": true, "format": "password"},
+				"password":        map[string]any{"type": "string", "description": "New password", "writeOnly": true, "format": "password"},
 				"username":        map[string]any{"type": "string", "description": "New username"},
 			},
 			"required": []string{"id"},

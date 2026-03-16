@@ -53,7 +53,7 @@ func registerAuthenticators(r *tools.Registry, s *store.Store) {
 				"method":     map[string]any{"type": "string", "description": "Authentication method (updb or cert)"},
 				"identityId": map[string]any{"type": "string", "description": "Identity ID"},
 				"username":   map[string]any{"type": "string", "description": "Username (for updb)"},
-				"password":   map[string]any{"type": "string", "description": "Password (for updb)"},
+				"password":   map[string]any{"type": "string", "description": "Password (for updb)", "writeOnly": true, "format": "password"},
 				"certPem":    map[string]any{"type": "string", "description": "PEM certificate (for cert)"},
 			},
 			"required": []string{"method", "identityId"},
@@ -112,7 +112,7 @@ func registerAuthenticators(r *tools.Registry, s *store.Store) {
 			"properties": map[string]any{
 				"id":       map[string]any{"type": "string", "description": "Authenticator ID"},
 				"username": map[string]any{"type": "string", "description": "New username"},
-				"password": map[string]any{"type": "string", "description": "New password"},
+				"password": map[string]any{"type": "string", "description": "New password", "writeOnly": true, "format": "password"},
 			},
 			"required": []string{"id"},
 		},

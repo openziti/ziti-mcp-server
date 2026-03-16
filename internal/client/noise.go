@@ -15,6 +15,7 @@ var noisyKeys = map[string]bool{
 	"appData":                   true,
 	"interfaces":                true,
 	"tags":                      true,
+	"filterableFields":          true,
 }
 
 // StripNoise recursively removes noisy keys from controller API responses
