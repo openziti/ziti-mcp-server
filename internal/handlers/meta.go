@@ -7,12 +7,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/auth"
-	"github.com/openziti/ziti-mcp-server-go/internal/ca"
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	"github.com/openziti/ziti-mcp-server-go/internal/config"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/auth"
+	"github.com/openziti/ziti-mcp-server/internal/ca"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	"github.com/openziti/ziti-mcp-server/internal/config"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 // pendingDeviceAuth holds state for an in-progress device-auth login.

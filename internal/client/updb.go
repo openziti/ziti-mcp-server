@@ -8,8 +8,8 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 // authenticateUPDB performs the username/password auth path.

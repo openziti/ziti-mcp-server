@@ -10,11 +10,11 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	mcpserver "github.com/mark3labs/mcp-go/server"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	"github.com/openziti/ziti-mcp-server-go/internal/config"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
-	"github.com/openziti/ziti-mcp-server-go/internal/version"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	"github.com/openziti/ziti-mcp-server/internal/config"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/version"
 )
 
 // Options configures the MCP server.

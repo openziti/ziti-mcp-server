@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 // ZitiConfig represents the essential connection info needed for API operations.

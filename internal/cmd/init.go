@@ -7,10 +7,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/auth"
-	"github.com/openziti/ziti-mcp-server-go/internal/ca"
-	"github.com/openziti/ziti-mcp-server-go/internal/clients"
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/auth"
+	"github.com/openziti/ziti-mcp-server/internal/ca"
+	"github.com/openziti/ziti-mcp-server/internal/clients"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 func newInitCmd() *cobra.Command {

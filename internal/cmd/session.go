@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 func newSessionCmd() *cobra.Command {

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 const sessionTTL = 30 * time.Minute

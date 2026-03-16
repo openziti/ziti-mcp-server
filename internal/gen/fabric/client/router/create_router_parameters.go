@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/models"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/models"
 )
 
 // NewCreateRouterParams creates a new CreateRouterParams object,

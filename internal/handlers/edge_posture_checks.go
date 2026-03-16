@@ -3,11 +3,11 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	posturecheck "github.com/openziti/ziti-mcp-server-go/internal/gen/edge/client/posture_checks"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/edge/models"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	posturecheck "github.com/openziti/ziti-mcp-server/internal/gen/edge/client/posture_checks"
+	"github.com/openziti/ziti-mcp-server/internal/gen/edge/models"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerPostureChecks(r *tools.Registry, s *store.Store) {

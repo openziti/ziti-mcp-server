@@ -3,10 +3,10 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	session "github.com/openziti/ziti-mcp-server-go/internal/gen/edge/client/session"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	session "github.com/openziti/ziti-mcp-server/internal/gen/edge/client/session"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerSessionDetails(r *tools.Registry, s *store.Store) {

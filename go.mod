@@ -1,4 +1,4 @@
-module github.com/openziti/ziti-mcp-server-go
+module github.com/openziti/ziti-mcp-server
 
 go 1.24.0
 

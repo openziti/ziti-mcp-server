@@ -7,10 +7,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/handlers"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
-	"github.com/openziti/ziti-mcp-server-go/internal/version"
+	"github.com/openziti/ziti-mcp-server/internal/handlers"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/version"
 )
 
 var (

@@ -8,8 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 // zitiIdentityFile represents the structure of a Ziti identity JSON file.

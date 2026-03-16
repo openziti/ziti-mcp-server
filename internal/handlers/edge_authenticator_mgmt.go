@@ -5,11 +5,11 @@ import (
 
 	"github.com/go-openapi/strfmt"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	authn "github.com/openziti/ziti-mcp-server-go/internal/gen/edge/client/authenticator"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/edge/models"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	authn "github.com/openziti/ziti-mcp-server/internal/gen/edge/client/authenticator"
+	"github.com/openziti/ziti-mcp-server/internal/gen/edge/models"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerAuthenticatorMgmt(r *tools.Registry, s *store.Store) {

@@ -48,44 +48,44 @@ The Ziti MCP Server integrates with LLMs and AI agents, allowing you to perform 
 
 #### Download a pre-built binary
 
-Pre-built binaries are available for macOS, Linux, and Windows (amd64 and arm64) on the [releases page](https://github.com/openziti/ziti-mcp-server-go/releases).
+Pre-built binaries are available for macOS, Linux, and Windows (amd64 and arm64) on the [releases page](https://github.com/openziti/ziti-mcp-server/releases).
 
 **macOS (Apple Silicon)**
 
 ```bash
-curl -sL https://github.com/openziti/ziti-mcp-server-go/releases/latest/download/ziti-mcp-server_darwin_arm64.tar.gz | tar xz
+curl -sL https://github.com/openziti/ziti-mcp-server/releases/latest/download/ziti-mcp-server_darwin_arm64.tar.gz | tar xz
 sudo mv ziti-mcp-server /usr/local/bin/
 ```
 
 **macOS (Intel)**
 
 ```bash
-curl -sL https://github.com/openziti/ziti-mcp-server-go/releases/latest/download/ziti-mcp-server_darwin_amd64.tar.gz | tar xz
+curl -sL https://github.com/openziti/ziti-mcp-server/releases/latest/download/ziti-mcp-server_darwin_amd64.tar.gz | tar xz
 sudo mv ziti-mcp-server /usr/local/bin/
 ```
 
 **Linux (amd64)**
 
 ```bash
-curl -sL https://github.com/openziti/ziti-mcp-server-go/releases/latest/download/ziti-mcp-server_linux_amd64.tar.gz | tar xz
+curl -sL https://github.com/openziti/ziti-mcp-server/releases/latest/download/ziti-mcp-server_linux_amd64.tar.gz | tar xz
 sudo mv ziti-mcp-server /usr/local/bin/
 ```
 
 **Linux (arm64)**
 
 ```bash
-curl -sL https://github.com/openziti/ziti-mcp-server-go/releases/latest/download/ziti-mcp-server_linux_arm64.tar.gz | tar xz
+curl -sL https://github.com/openziti/ziti-mcp-server/releases/latest/download/ziti-mcp-server_linux_arm64.tar.gz | tar xz
 sudo mv ziti-mcp-server /usr/local/bin/
 ```
 
 **Windows**
 
-Download the appropriate `.zip` from the [releases page](https://github.com/openziti/ziti-mcp-server-go/releases) and add the extracted `ziti-mcp-server.exe` to your PATH.
+Download the appropriate `.zip` from the [releases page](https://github.com/openziti/ziti-mcp-server/releases) and add the extracted `ziti-mcp-server.exe` to your PATH.
 
 #### Build from source
 
 ```bash
-go install github.com/openziti/ziti-mcp-server-go/cmd/ziti-mcp-server@latest
+go install github.com/openziti/ziti-mcp-server/cmd/ziti-mcp-server@latest
 ```
 
 ### Register with your AI Client
@@ -410,7 +410,7 @@ We recommend regularly scanning this server with community tools built to surfac
 
 ### Reporting Issues
 
-To provide feedback or report a bug, please [raise an issue on our issue tracker](https://github.com/openziti/ziti-mcp-server-go/issues).
+To provide feedback or report a bug, please [raise an issue on our issue tracker](https://github.com/openziti/ziti-mcp-server/issues).
 
 ## 🩺 Troubleshooting
 
@@ -465,7 +465,7 @@ tail -n 20 -F ~/Library/Logs/Claude/mcp*.log
 
 ```bash
 # Clone the repository
-git clone https://github.com/openziti/ziti-mcp-server-go.git
+git clone https://github.com/openziti/ziti-mcp-server.git
 cd ziti-mcp-server-go
 
 # Build

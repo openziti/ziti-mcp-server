@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 // BaseManager provides common functionality for client config writers.

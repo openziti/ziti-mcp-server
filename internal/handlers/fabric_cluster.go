@@ -3,11 +3,11 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	fcluster "github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/cluster"
-	fmodels "github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/models"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	fcluster "github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/cluster"
+	fmodels "github.com/openziti/ziti-mcp-server/internal/gen/fabric/models"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerFabricCluster(r *tools.Registry, s *store.Store) {

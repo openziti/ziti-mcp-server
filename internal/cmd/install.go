@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/clients"
+	"github.com/openziti/ziti-mcp-server/internal/clients"
 )
 
 func newInstallCmd() *cobra.Command {

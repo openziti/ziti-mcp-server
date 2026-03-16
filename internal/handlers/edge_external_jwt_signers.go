@@ -5,11 +5,11 @@ import (
 
 	"github.com/go-openapi/strfmt"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	ejwt "github.com/openziti/ziti-mcp-server-go/internal/gen/edge/client/external_j_w_t_signer"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/edge/models"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	ejwt "github.com/openziti/ziti-mcp-server/internal/gen/edge/client/external_j_w_t_signer"
+	"github.com/openziti/ziti-mcp-server/internal/gen/edge/models"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerExternalJwtSigners(r *tools.Registry, s *store.Store) {
