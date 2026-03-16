@@ -3,11 +3,11 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	fterminator "github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/terminator"
-	fmodels "github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/models"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	fterminator "github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/terminator"
+	fmodels "github.com/openziti/ziti-mcp-server/internal/gen/fabric/models"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerFabricTerminators(r *tools.Registry, s *store.Store) {

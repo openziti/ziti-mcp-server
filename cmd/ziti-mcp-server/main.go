@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/cmd"
+	"github.com/openziti/ziti-mcp-server/internal/cmd"
 )
 
 func main() {

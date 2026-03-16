@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
+	"github.com/openziti/ziti-mcp-server/internal/client"
 )
 
 // FetchControllerCA fetches the controller's CA certificate(s) from the EST

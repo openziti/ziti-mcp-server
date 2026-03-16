@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/auth"
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/auth"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 func newLogoutCmd() *cobra.Command {

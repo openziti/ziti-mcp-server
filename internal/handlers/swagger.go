@@ -9,8 +9,8 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	edgeclient "github.com/openziti/ziti-mcp-server-go/internal/gen/edge/client"
-	fabricclient "github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client"
+	edgeclient "github.com/openziti/ziti-mcp-server/internal/gen/edge/client"
+	fabricclient "github.com/openziti/ziti-mcp-server/internal/gen/fabric/client"
 )
 
 // NewEdgeClient creates a go-swagger edge management client backed by the given

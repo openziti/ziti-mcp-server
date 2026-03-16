@@ -3,8 +3,8 @@ package auth
 import (
 	"log/slog"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 // StoreUPDBCredentials saves UPDB (username/password) credentials to the store.

@@ -10,14 +10,14 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/circuit"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/cluster"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/database"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/inspect"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/link"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/router"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/service"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/client/terminator"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/circuit"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/cluster"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/database"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/inspect"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/link"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/router"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/service"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/client/terminator"
 )
 
 // Default ziti fabric management HTTP client.

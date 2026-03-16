@@ -3,11 +3,11 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/client"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/edge/client/service"
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/edge/models"
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/client"
+	"github.com/openziti/ziti-mcp-server/internal/gen/edge/client/service"
+	"github.com/openziti/ziti-mcp-server/internal/gen/edge/models"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 func registerServices(r *tools.Registry, s *store.Store) {

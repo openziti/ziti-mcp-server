@@ -14,9 +14,9 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X github.com/openziti/ziti-mcp-server-go/internal/version.Version={{.Version}}
-      - -X github.com/openziti/ziti-mcp-server-go/internal/version.Commit={{.ShortCommit}}
-      - -X github.com/openziti/ziti-mcp-server-go/internal/version.Date={{.Date}}
+      - -X github.com/openziti/ziti-mcp-server/internal/version.Version={{.Version}}
+      - -X github.com/openziti/ziti-mcp-server/internal/version.Commit={{.ShortCommit}}
+      - -X github.com/openziti/ziti-mcp-server/internal/version.Date={{.Date}}
 
 archives:
   - format: tar.gz

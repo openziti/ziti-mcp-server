@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/tools"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/tools"
 )
 
 // RegisterAll registers all MCP tool handlers with the given registry.

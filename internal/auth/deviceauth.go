@@ -10,8 +10,8 @@ import (
 
 	"github.com/pkg/browser"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 // DeviceAuthConfig holds parameters for the device authorization flow.

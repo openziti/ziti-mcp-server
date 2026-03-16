@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/gen/fabric/models"
+	"github.com/openziti/ziti-mcp-server/internal/gen/fabric/models"
 )
 
 // CreateDatabaseSnapshotReader is a Reader for the CreateDatabaseSnapshot structure.

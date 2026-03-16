@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/store"
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/store"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 // ClientCredentialsConfig holds parameters for client credentials flow.

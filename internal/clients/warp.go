@@ -3,7 +3,7 @@ package clients
 import (
 	"encoding/json"
 
-	"github.com/openziti/ziti-mcp-server-go/internal/terminal"
+	"github.com/openziti/ziti-mcp-server/internal/terminal"
 )
 
 // WarpManager handles Warp configuration (prints snippet for manual paste).
