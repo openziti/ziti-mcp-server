@@ -26,7 +26,14 @@ func registerConfigTypes(r *tools.Registry, s *store.Store) {
 				if err != nil {
 					return nil, err
 				}
-				return ToMap(resp.Payload)
+				m, err := ToMap(resp.Payload)
+				if err != nil {
+					return nil, err
+				}
+				// Strip full JSON schemas from list response to reduce token usage.
+				// Schemas are still available via the detail (listConfigType) endpoint.
+				stripFieldFromDataItems(m, "schema")
+				return m, nil
 			},
 		), nil
 	})

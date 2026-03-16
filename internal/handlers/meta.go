@@ -102,6 +102,9 @@ func registerLoginUpdb(r *tools.Registry, s *store.Store) {
 				"password": map[string]any{
 					"type":        "string",
 					"description": "UPDB password",
+					"writeOnly":   true,
+					"format":      "password",
+					"x-sensitive": "true",
 				},
 			},
 			"required": []string{"network", "controller", "username", "password"},
@@ -156,6 +159,7 @@ func registerLoginIdentity(r *tools.Registry, s *store.Store) {
 				"identityJson": map[string]any{
 					"type":        "string",
 					"description": "Raw Ziti identity JSON content (the full JSON object with ztAPI, id.cert, id.key, id.ca)",
+					"writeOnly":   true,
 				},
 			},
 			"required": []string{"network", "identityJson"},
@@ -220,6 +224,8 @@ func registerLoginClientCredentials(r *tools.Registry, s *store.Store) {
 				"idpClientSecret": map[string]any{
 					"type":        "string",
 					"description": "OAuth2 client secret",
+					"writeOnly":   true,
+					"format":      "password",
 				},
 				"idpAudience": map[string]any{
 					"type":        "string",
