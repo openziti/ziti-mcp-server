@@ -38,11 +38,97 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update server.json version
+      - name: Build MCPB bundles
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          jq --arg v "$VERSION" '.version = $v | .packages[0].version = $v' server.json > server.json.tmp
+          TAG="${GITHUB_REF_NAME}"
+          mkdir -p mcpb-out
+
+          for PLATFORM in linux_amd64 linux_arm64 darwin_amd64 darwin_arm64 windows_amd64 windows_arm64; do
+            OS="${PLATFORM%_*}"
+            ARCH="${PLATFORM#*_}"
+
+            if [ "$OS" = "windows" ]; then
+              BINARY="ziti-mcp-server.exe"
+              ARCHIVE="ziti-mcp-server_${OS}_${ARCH}.zip"
+            else
+              BINARY="ziti-mcp-server"
+              ARCHIVE="ziti-mcp-server_${OS}_${ARCH}.tar.gz"
+            fi
+
+            # Download release archive
+            gh release download "$TAG" -p "$ARCHIVE" -D /tmp/downloads
+
+            # Extract binary
+            WORKDIR=$(mktemp -d)
+            if [ "$OS" = "windows" ]; then
+              unzip -o "/tmp/downloads/$ARCHIVE" -d "$WORKDIR"
+            else
+              tar xzf "/tmp/downloads/$ARCHIVE" -C "$WORKDIR"
+            fi
+
+            # Create bundle directory
+            BUNDLEDIR=$(mktemp -d)
+            mkdir -p "$BUNDLEDIR/server"
+            cp "$WORKDIR/$BINARY" "$BUNDLEDIR/server/"
+
+            # Create manifest.json
+            cat > "$BUNDLEDIR/manifest.json" <<MANIFEST
+          {
+            "name": "ziti-mcp-server",
+            "version": "$VERSION",
+            "server": {
+              "type": "binary",
+              "entry_point": "server/$BINARY",
+              "mcp_config": {
+                "command": "{entry_point}",
+                "args": ["run"]
+              }
+            },
+            "compatibility": {
+              "platforms": ["$OS"],
+              "architectures": ["$ARCH"]
+            }
+          }
+          MANIFEST
+
+            # Create .mcpb bundle (zip)
+            MCPB_NAME="ziti-mcp-server_${OS}_${ARCH}.mcpb"
+            (cd "$BUNDLEDIR" && zip -r "$MCPB_NAME" manifest.json server/)
+            mv "$BUNDLEDIR/$MCPB_NAME" mcpb-out/
+          done
+
+      - name: Upload MCPB bundles to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${GITHUB_REF_NAME}" mcpb-out/*.mcpb
+
+      - name: Update server.json for publish
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          TAG="${GITHUB_REF_NAME}"
+          BASE_URL="https://github.com/openziti/ziti-mcp-server/releases/download/${TAG}"
+
+          # Build packages array with real SHA256 hashes
+          PACKAGES="[]"
+          for f in mcpb-out/*.mcpb; do
+            FILENAME=$(basename "$f")
+            SHA256=$(sha256sum "$f" | awk '{print $1}')
+            PACKAGES=$(echo "$PACKAGES" | jq \
+              --arg id "${BASE_URL}/${FILENAME}" \
+              --arg sha "$SHA256" \
+              '. + [{"registryType":"mcpb","identifier":$id,"fileSha256":$sha,"transport":{"type":"stdio"}}]')
+          done
+
+          # Patch server.json with version and packages
+          jq --arg v "$VERSION" --argjson pkgs "$PACKAGES" \
+            '.version = $v | .packages = $pkgs' server.json > server.json.tmp
           mv server.json.tmp server.json
+
+          echo "Updated server.json:"
+          cat server.json
 
       - name: Install mcp-publisher
         run: |

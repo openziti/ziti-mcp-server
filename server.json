@@ -10,9 +10,49 @@
   "version": "0.0.0",
   "packages": [
     {
-      "registryType": "github",
-      "identifier": "openziti/ziti-mcp-server",
-      "version": "0.0.0",
+      "registryType": "mcpb",
+      "identifier": "https://github.com/openziti/ziti-mcp-server/releases/download/v0.0.0/ziti-mcp-server_darwin_amd64.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/openziti/ziti-mcp-server/releases/download/v0.0.0/ziti-mcp-server_darwin_arm64.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/openziti/ziti-mcp-server/releases/download/v0.0.0/ziti-mcp-server_linux_amd64.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/openziti/ziti-mcp-server/releases/download/v0.0.0/ziti-mcp-server_linux_arm64.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/openziti/ziti-mcp-server/releases/download/v0.0.0/ziti-mcp-server_windows_amd64.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/openziti/ziti-mcp-server/releases/download/v0.0.0/ziti-mcp-server_windows_arm64.mcpb",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "transport": {
         "type": "stdio"
       }
