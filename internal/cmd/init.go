@@ -164,7 +164,7 @@ func newInitCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVar(&authMode, "auth-mode", "", "Authentication mode: device-auth, client-credentials, identity, or updb (required)")
-	cmd.Flags().StringVar(&clientType, "client", "claude", "Client to configure (claude, claude-code, cursor, windsurf, vscode, warp)")
+	cmd.Flags().StringVar(&clientType, "client", "claude", "Client to configure (claude, claude-code, cursor, opencode, windsurf, vscode, warp)")
 	cmd.Flags().StringVar(&zitiControllerHost, "ziti-controller-host", "", "Ziti controller host")
 	cmd.Flags().StringVar(&idpDomain, "idp-domain", "", "IdP domain")
 	cmd.Flags().StringVar(&idpClientID, "idp-client-id", "", "IdP client ID")

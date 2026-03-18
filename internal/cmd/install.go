@@ -39,7 +39,7 @@ This does not authenticate — use the runtime login tools or 'init' for that.`,
 		},
 	}
 
-	cmd.Flags().StringVar(&clientType, "client", "claude", "Client to configure (claude, claude-code, cursor, windsurf, vscode, warp)")
+	cmd.Flags().StringVar(&clientType, "client", "claude", "Client to configure (claude, claude-code, cursor, windsurf, vscode, warp, opencode)")
 	cmd.Flags().StringVar(&toolPatterns, "tools", "*", "Comma-separated tool patterns")
 	cmd.Flags().BoolVar(&readOnly, "read-only", false, "Only expose read-only tools")
 
