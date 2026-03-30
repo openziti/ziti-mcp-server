@@ -34,7 +34,7 @@ func authenticateUPDB(cfg tools.HandlerConfig, s *store.Store) (*http.Client, st
 	}
 
 	// Authenticate via password method
-	authURL := fmt.Sprintf("https://%s/edge/v1/authenticate?method=password", cfg.ZitiControllerHost)
+	authURL := fmt.Sprintf("https://%s/edge/management/v1/authenticate?method=password", cfg.ZitiControllerHost)
 	slog.Debug("authenticating with UPDB", "url", authURL)
 
 	body, err := json.Marshal(map[string]string{
