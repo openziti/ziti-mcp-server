@@ -22,11 +22,18 @@ func registerServicePolicies(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service policies", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.ServicePolicy.ListServicePolicies(service_policy.NewListServicePoliciesParams(), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.ServicePolicy.ListServicePolicies(
+						service_policy.NewListServicePoliciesParams().WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -211,11 +218,18 @@ func registerServicePolicies(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service policy identities", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.ServicePolicy.ListServicePolicyIdentities(service_policy.NewListServicePolicyIdentitiesParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.ServicePolicy.ListServicePolicyIdentities(
+						service_policy.NewListServicePolicyIdentitiesParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -235,11 +249,18 @@ func registerServicePolicies(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service policy services", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.ServicePolicy.ListServicePolicyServices(service_policy.NewListServicePolicyServicesParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.ServicePolicy.ListServicePolicyServices(
+						service_policy.NewListServicePolicyServicesParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -259,11 +280,18 @@ func registerServicePolicies(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service policy posture checks", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.ServicePolicy.ListServicePolicyPostureChecks(service_policy.NewListServicePolicyPostureChecksParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.ServicePolicy.ListServicePolicyPostureChecks(
+						service_policy.NewListServicePolicyPostureChecksParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})

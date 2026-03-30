@@ -22,18 +22,24 @@ func registerConfigTypes(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list config types", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Config.ListConfigTypes(edgeconfig.NewListConfigTypesParams(), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				m, err := ToMap(resp.Payload)
-				if err != nil {
-					return nil, err
-				}
-				// Strip full JSON schemas from list response to reduce token usage.
-				// Schemas are still available via the detail (listConfigType) endpoint.
-				stripFieldFromDataItems(m, "schema")
-				return m, nil
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Config.ListConfigTypes(
+						edgeconfig.NewListConfigTypesParams().WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					// Strip full JSON schemas from list response to reduce token usage.
+					// Schemas are still available via the detail (listConfigType) endpoint.
+					stripFieldFromDataItems(m, "schema")
+					if mm, ok := m.(map[string]any); ok {
+						return mm, nil
+					}
+					return nil, nil
+				})
 			},
 		), nil
 	})

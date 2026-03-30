@@ -18,11 +18,18 @@ func registerPostureChecks(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list posture checks", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.PostureChecks.ListPostureChecks(posturecheck.NewListPostureChecksParams(), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.PostureChecks.ListPostureChecks(
+						posturecheck.NewListPostureChecksParams().WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			}), nil
 	})
 
@@ -180,11 +187,18 @@ func registerPostureChecks(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list posture check types", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.PostureChecks.ListPostureCheckTypes(posturecheck.NewListPostureCheckTypesParams(), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.PostureChecks.ListPostureCheckTypes(
+						posturecheck.NewListPostureCheckTypesParams().WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			}), nil
 	})
 

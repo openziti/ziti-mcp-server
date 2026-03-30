@@ -24,11 +24,18 @@ func registerEnrollments(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list enrollments", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Enrollment.ListEnrollments(enrollment.NewListEnrollmentsParams(), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Enrollment.ListEnrollments(
+						enrollment.NewListEnrollmentsParams().WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
