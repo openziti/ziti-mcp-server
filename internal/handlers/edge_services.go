@@ -22,11 +22,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list services", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServices(service.NewListServicesParams(), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServices(
+						service.NewListServicesParams().WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -208,11 +215,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service identities", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServiceIdentities(service.NewListServiceIdentitiesParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServiceIdentities(
+						service.NewListServiceIdentitiesParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -232,11 +246,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service edge routers", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServiceEdgeRouters(service.NewListServiceEdgeRoutersParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServiceEdgeRouters(
+						service.NewListServiceEdgeRoutersParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -256,11 +277,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service terminators", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServiceTerminators(service.NewListServiceTerminatorsParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServiceTerminators(
+						service.NewListServiceTerminatorsParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -280,11 +308,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service configs", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServiceConfig(service.NewListServiceConfigParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServiceConfig(
+						service.NewListServiceConfigParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -304,11 +339,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service service policies", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServiceServicePolicies(service.NewListServiceServicePoliciesParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServiceServicePolicies(
+						service.NewListServiceServicePoliciesParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})
@@ -328,11 +370,18 @@ func registerServices(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list service service edge router policies", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				ec := NewEdgeClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := ec.Service.ListServiceServiceEdgeRouterPolicies(service.NewListServiceServiceEdgeRouterPoliciesParams().WithID(id), noAuth)
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := ec.Service.ListServiceServiceEdgeRouterPolicies(
+						service.NewListServiceServiceEdgeRouterPoliciesParams().WithID(id).WithLimit(&limit).WithOffset(&offset), noAuth)
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			},
 		), nil
 	})

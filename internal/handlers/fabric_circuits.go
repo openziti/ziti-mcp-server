@@ -17,11 +17,18 @@ func registerFabricCircuits(r *tools.Registry, s *store.Store) {
 		return client.WithAuthenticatedClient(req, cfg, "list circuits", s,
 			func(httpClient *http.Client, _ string) (any, error) {
 				fc := NewFabricClient(httpClient, cfg.ZitiControllerHost)
-				resp, err := fc.Circuit.ListCircuits(fcircuit.NewListCircuitsParams())
-				if err != nil {
-					return nil, err
-				}
-				return ToMap(resp.Payload)
+				return fetchAllPages(func(limit, offset int64) (map[string]any, error) {
+					resp, err := fc.Circuit.ListCircuits(
+						fcircuit.NewListCircuitsParams().WithLimit(&limit).WithOffset(&offset))
+					if err != nil {
+						return nil, err
+					}
+					m, err := ToMap(resp.Payload)
+					if err != nil {
+						return nil, err
+					}
+					return m.(map[string]any), nil
+				})
 			}), nil
 	})
 

@@ -117,9 +117,72 @@ func SplitCSV(s string) []string {
 	return result
 }
 
-func strPtr(s string) *string    { return &s }
-func boolPtr(b bool) *bool       { return &b }
-func int64Ptr(n int64) *int64    { return &n }
+func strPtr(s string) *string { return &s }
+func boolPtr(b bool) *bool    { return &b }
+func int64Ptr(n int64) *int64 { return &n }
+
+// listPageSize is the number of items requested per page when auto-paginating.
+// OpenZiti supports a maximum of 500 per page.
+const listPageSize = int64(500)
+
+// listPageFunc is a function that fetches one page from a list endpoint.
+type listPageFunc func(limit, offset int64) (map[string]any, error)
+
+// fetchAllPages calls fetchPage repeatedly with increasing offsets until all
+// items have been collected, then returns a single merged result map whose
+// "data" field contains the complete item slice.  The "meta" field from the
+// last page is preserved so callers still see pagination metadata.
+func fetchAllPages(fetchPage listPageFunc) (map[string]any, error) {
+	first, err := fetchPage(listPageSize, 0)
+	if err != nil {
+		return nil, err
+	}
+
+	data, _ := first["data"].([]any)
+	total := paginationTotalCount(first)
+
+	// Single page — nothing else to fetch.
+	if int64(len(data)) >= total {
+		return first, nil
+	}
+
+	// Accumulate remaining pages.
+	offset := int64(len(data))
+	for offset < total {
+		page, err := fetchPage(listPageSize, offset)
+		if err != nil {
+			return nil, err
+		}
+		pageData, _ := page["data"].([]any)
+		if len(pageData) == 0 {
+			break
+		}
+		data = append(data, pageData...)
+		offset += int64(len(pageData))
+	}
+
+	first["data"] = data
+	return first, nil
+}
+
+// paginationTotalCount extracts meta.pagination.totalCount from a list response map.
+func paginationTotalCount(m map[string]any) int64 {
+	meta, _ := m["meta"].(map[string]any)
+	if meta == nil {
+		return 0
+	}
+	pagination, _ := meta["pagination"].(map[string]any)
+	if pagination == nil {
+		return 0
+	}
+	switch v := pagination["totalCount"].(type) {
+	case float64:
+		return int64(v)
+	case int64:
+		return v
+	}
+	return 0
+}
 
 func errResponse(msg string) tools.HandlerResponse {
 	return tools.HandlerResponse{
